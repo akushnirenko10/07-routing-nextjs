@@ -14,14 +14,16 @@ const notesApi = axios.create({
 });
 
 export async function fetchNotes(
-  query: string,
-  currentPage: number,
+  query?: string,
+  currentPage?: number,
+  tag?: string,
 ): Promise<FetchNotesResponse> {
   const { data } = await notesApi.get<FetchNotesResponse>("/notes", {
     params: {
       search: query,
       page: currentPage,
       perPage: 12,
+      tag,
     },
   });
   return data;
